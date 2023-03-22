@@ -26,7 +26,7 @@ def main():
     parser.add_argument('-md', action="store", type=int, default=5, dest='md',
                         help='Minimum depth. Default: 5')
     parser.add_argument('-t_db', action="store", type=str, dest='t_db', help='KMA indexed database')
-    parser.add_argument('-output', action="store", type=str, dest='output', help='Output directory')
+    parser.add_argument('-o', action="store", type=str, dest='output', help='Output directory')
     args = parser.parse_args()
 
     if args.illumina != []:

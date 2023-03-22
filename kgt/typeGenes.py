@@ -13,14 +13,14 @@ def type_genes(args):
             if prefix in collections:
                 prefix = prefix + '_illumina'
             input_seqs = ' '.join(args.illumina[i:i+2])
-            os.system('kma -ipe {} -o {} -t_db {} -ill -md {} -ID 95'.format(input_seqs, args.output, args.t_db, args.md))
+            os.system('kma -ipe {} -o {}/{} -t_db {} -ill -md {} -ID 95'.format(input_seqs, args.output, prefix, args.t_db, args.md))
             realignConsensus.realign_consensus(args.output, prefix, args.t_db, input_seqs)
     if args.nanopore != []:
         for item in args.nanopore:
             prefix = derive_prefix(item)
             if prefix in collections:
                 prefix = prefix + '_nanopore'
-            os.system('kma -i {} -o {} -t_db {} -ont -md {} -ID 95'.format(item, args.output, args.t_db, args.md))
+            os.system('kma -i {} -o {}/{} -t_db {} -ont -md {} -ID 95'.format(item, args.output, prefix, args.t_db, args.md))
             realignConsensus.realign_consensus(args.output, prefix, args.t_db, item)
 
 def check_prefix_collisions(args):

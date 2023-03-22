@@ -1,7 +1,7 @@
 import os
 import sys
 
-from realignConsensus import realign_consensus
+from kgt import realignConsensus
 
 def type_genes(args):
     set_up_output_directory(args.output)
@@ -14,14 +14,14 @@ def type_genes(args):
                 prefix = prefix + '_illumina'
             input_seqs = ' '.join(args.illumina[i:i+2])
             os.system('kma -ipe {} -o {} -t_db {} -ill -md {} -ID 95'.format(input_seqs, args.output, args.t_db, args.md))
-            realign_consensus(args.output, prefix, args.t_db, input_seqs)
+            realignConsensus.realign_consensus(args.output, prefix, args.t_db, input_seqs)
     if args.nanopore != []:
         for item in args.nanopore:
             prefix = derive_prefix(item)
             if prefix in collections:
                 prefix = prefix + '_nanopore'
             os.system('kma -i {} -o {} -t_db {} -ont -md {} -ID 95'.format(item, args.output, args.t_db, args.md))
-            realign_consensus(args.output, prefix, args.t_db, item)
+            realignConsensus.realign_consensus(args.output, prefix, args.t_db, item)
 
 def check_prefix_collisions(args):
     prefixes = []

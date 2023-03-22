@@ -1,6 +1,6 @@
 import os
 
-def realign_consensus(output, prefix, database, input):
+def realign_consensus(output, prefix, database):
     non_perfect_hits = []
     alignment_dict = {}
     headers = ''
@@ -76,5 +76,8 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
             print_list = [item] + realignment_dict[item]
             print_list = "\t".join(print_list)
             print (print_list, file=f)
+
+    os.system('mv {}/{}.res {}/old_{}.res'.format(output, prefix, output, prefix))
+    os.system('mv {}/final_{}.res {}/{}.res'.format(output, prefix, output, prefix))
 
 

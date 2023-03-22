@@ -1,2 +1,1 @@
-# AGT
-Accurate Gene Typer
+# KGT (k-mer gene typer)

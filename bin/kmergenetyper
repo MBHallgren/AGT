@@ -7,15 +7,15 @@ import os
 
 sys.path = [os.path.join(os.path.dirname(os.path.realpath(__file__)),'..')] + sys.path
 
-from kgt import version
+from kmergenetyper import version
 
 __author__ = "Malte B. Hallgren"
 __version__ = version.__version__
 
-from kgt import typeGenes
+from kmergenetyper import typeGenes
 
 def main():
-    description = 'KGT - K-mer Gene Typer. A tool for accurately typing genes from' \
+    description = 'K-mer Gene Typer. A tool for accurately typing genes from' \
                   ' Illumina and Nanopore sequencing data.'
 
     parser = argparse.ArgumentParser(description=description)

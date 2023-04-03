@@ -1,7 +1,7 @@
 import os
 import sys
 
-from kgt import realignConsensus
+from kmergenetyper import realignConsensus
 
 def type_genes(args):
     set_up_output_directory(args.output)

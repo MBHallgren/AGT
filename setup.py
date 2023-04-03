@@ -1,16 +1,16 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='kgt',
-    version='1.0.0',
+    name='kmergenetyper',
+    version='1.0.1',
     packages=find_packages(),
     data_files=[],
     include_package_data=True,
-    url='https://https://github.com/MBHallgren/KGT',
+    url='https://https://github.com/MBHallgren/kmergenetyper',
     license='',
     install_requires=(),
     author='Malte B. Hallgren',
-    scripts=['bin/kgt'],
+    scripts=['bin/kmergenetyper'],
     author_email='malhal@food.dtu.dk',
-    description='KGT - K-mer Gene Typer',
+    description='kmergenetyper - K-mer Gene Typer',
 )

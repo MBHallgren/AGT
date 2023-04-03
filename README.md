@@ -1,1 +1,1 @@
-# KGT (k-mer gene typer)
+# kmergenetyper (k-mer gene typer)

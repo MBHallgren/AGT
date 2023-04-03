@@ -12,5 +12,5 @@ setup(
     author='Malte B. Hallgren',
     scripts=['bin/kgt'],
     author_email='malhal@food.dtu.dk',
-    description='KGT - K-mer Gene Typer'
+    description='KGT - K-mer Gene Typer',
 )

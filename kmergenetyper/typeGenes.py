@@ -16,14 +16,14 @@ def type_genes(args):
                 prefix = prefix + '_illumina'
             input_seqs = ' '.join(args.illumina[i:i+2])
             os.system('kma -ipe {} -o {}/{} -t_db {} -ill -md {} -ID 95'.format(input_seqs, args.output, prefix, args.t_db, args.md))
-            realignConsensus.realign_consensus(args.output, prefix, args.t_db)
+            realignConsensus.realign_consensus(args.output, prefix, args.t_db, args.keep)
     if args.nanopore != []:
         for item in args.nanopore:
             prefix = derive_prefix(item)
             if prefix in collections:
                 prefix = prefix + '_nanopore'
             os.system('kma -i {} -o {}/{} -t_db {} -ont -md {} -ID 95'.format(item, args.output, prefix, args.t_db, args.md))
-            realignConsensus.realign_consensus(args.output, prefix, args.t_db)
+            realignConsensus.realign_consensus(args.output, prefix, args.t_db, args.keep)
 
 def check_prefix_collisions(args):
     prefixes = []

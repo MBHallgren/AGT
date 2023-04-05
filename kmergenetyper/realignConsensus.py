@@ -1,6 +1,6 @@
 import os
 
-def realign_consensus(output, prefix, database):
+def realign_consensus(output, prefix, database, keep):
     non_perfect_hits = []
     alignment_dict = {}
     headers = ''
@@ -33,8 +33,9 @@ def realign_consensus(output, prefix, database):
 
     eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
 
-    #for item in non_perfect_hits:
-    #    os.system('rm {}/{}*'.format(output, item[1:]))
+    if not keep:
+        for item in non_perfect_hits:
+            os.system('rm {}/{}*'.format(output, item[1:]))
 
 def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits):
     realignment_dict = {}

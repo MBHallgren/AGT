@@ -27,6 +27,9 @@ def main():
                         help='Minimum depth. Default: 5')
     parser.add_argument('-t_db', action="store", type=str, dest='t_db', help='KMA indexed database')
     parser.add_argument('-o', action="store", type=str, dest='output', help='Output directory')
+    parser.add_argument('-keep', action="store_true", dest='keep', help='Keep intermediate gene files.')
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s ' + __version__)
+
     args = parser.parse_args()
 
     if args.illumina != []:

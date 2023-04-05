@@ -1,5 +1,6 @@
 import os
 import sys
+import subprocess
 
 from kmergenetyper import realignConsensus
 
@@ -49,3 +50,10 @@ def derive_prefix(file):
 def set_up_output_directory(output):
     if not os.path.exists(output):
         os.makedirs(output)
+
+def check_for_kma():
+    """Checks if kma is installed"""
+    try:
+        subprocess.call(["kma"], stdout=open(os.devnull, 'wb'))
+    except FileNotFoundError:
+        sys.exit("kma is not installed correctly directly in the PATH.")

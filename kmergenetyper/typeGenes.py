@@ -55,5 +55,5 @@ def check_for_kma():
     """Checks if kma is installed"""
     try:
         subprocess.call(["kma"], stdout=open(os.devnull, 'wb'))
-    except FileNotFoundError:
+    except Exception:
         sys.exit("kma is not installed correctly directly in the PATH.")

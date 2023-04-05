@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='kmergenetyper',
-    version='1.0.2',
+    version='1.0.3',
     packages=find_packages(),
     data_files=[],
     include_package_data=True,

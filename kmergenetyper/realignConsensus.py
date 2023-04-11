@@ -9,7 +9,7 @@ def realign_consensus(output, prefix, database, keep):
         for line in f:
             line = line.strip()
             if not line.startswith('#'):
-                if float(line.split('\t')[4]) < 100.00:
+                if float(line.split('\t')[4].strip()) < 100.00:
                     non_perfect_hits.append('>' + line.split('\t')[0].strip())
                 alignment_dict[line.split('\t')[0].strip()] = line.split('\t')[1:]
             else:
@@ -44,6 +44,9 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
     for item in alignment_dict:
         if float(alignment_dict[item][3]) == 100.00:
             realignment_dict[item] = alignment_dict[item]
+
+    print (realignment_dict)
+    print (alignment_dict)
 
     for item in non_perfect_hits:
         with open('{}/{}.res'.format(output, item[1:]), 'r') as f:

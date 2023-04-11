@@ -47,7 +47,9 @@ def realign_consensus(output, prefix, database, keep):
 def reformat_dict(input_dict):
     output_dict = {}
     for item in input_dict:
-        output_dict[item.strip()] = input_dict[item][0]
+        output_dict[item.strip()] = []
+        for value in input_dict[item]:
+            output_dict[item.strip()].append(value.strip())
     return output_dict
 def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits):
     realignment_dict = {}

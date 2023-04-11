@@ -11,7 +11,7 @@ def realign_consensus(output, prefix, database, keep):
             if not line.startswith('#'):
                 if float(line.split('\t')[4]) < 100.00:
                     non_perfect_hits.append('>' + line.split('\t')[0].rstrip())
-                alignment_dict[line.split('\t')[0]] = line.split('\t')[1:]
+                alignment_dict[line.split('\t')[0]] = line.split('\t')[1:].rstrip()
             else:
                 headers = line
 
@@ -53,8 +53,6 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
                 if not line.startswith('#'):
                     gene = line.split('\t')[0]
                     if gene not in realignment_dict:
-                        print (realignment_dict)
-                        print (alignment_dict)
                         realignment_dict[gene] = alignment_dict[original_gene]
                         t_id_1 = realignment_dict[gene][3]
                         t_id_2 = line.split('\t')[4]

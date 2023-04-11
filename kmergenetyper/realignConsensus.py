@@ -13,10 +13,12 @@ def realign_consensus(output, prefix, database, keep):
                 for item in line:
                     item = item.strip()
                 if float(line[4]) < 100.00:
-                    non_perfect_hits.append('>' + line[0])
+                    non_perfect_hits.append('>' + line[0].strip())
                 alignment_dict[line[0]] = line[1:]
             else:
                 headers = line
+
+    alignment_dict = reformat_dict(alignment_dict)
 
     with open('{}/{}.fsa'.format(output, prefix), 'r') as f:
         flag = False
@@ -49,7 +51,6 @@ def reformat_dict(input_dict):
     return output_dict
 def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits):
     realignment_dict = {}
-    #alignment_dict = reformat_dict(alignment_dict)
 
     print (alignment_dict)
     for item in alignment_dict:

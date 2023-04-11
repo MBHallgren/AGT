@@ -43,6 +43,7 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
     for item in alignment_dict:
         if float(alignment_dict[item][3]) == 100.00:
             realignment_dict[item] = alignment_dict[item]
+    sys.exit(non_perfect_hits)
 
     for item in non_perfect_hits:
         with open('{}/{}.res'.format(output, item[1:]), 'r') as f:

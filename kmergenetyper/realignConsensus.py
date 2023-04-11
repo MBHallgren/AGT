@@ -38,8 +38,15 @@ def realign_consensus(output, prefix, database, keep):
         for item in non_perfect_hits:
             os.system('rm {}/{}*'.format(output, item[1:]))
         os.system('rm {}/old_*'.format(output, prefix))
+
+def reformat_dict(input_dict):
+    output_dict = {}
+    for item in input_dict:
+        output_dict[item.strip()] = input_dict[item][0]
+    return output_dict
 def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits):
     realignment_dict = {}
+    alignment_dict = reformat_dict(alignment_dict)
 
     for item in alignment_dict:
         if float(alignment_dict[item][3]) == 100.00:

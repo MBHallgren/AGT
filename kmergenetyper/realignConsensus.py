@@ -70,17 +70,17 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
                         t_id_1 = realignment_dict[gene][3]
                         t_id_2 = line.split('\t')[4]
                         if float(t_id_1) < float(t_id_2):
-                            realignment_dict[gene][3] = t_id_2.strip()  # Replace template identity
+                            realignment_dict[gene][3] = t_id_2 # Replace template identity
                             realignment_dict[gene][4] = line.split('\t')[5]  # Replace template coverage
                             realignment_dict[gene][5] = line.split('\t')[6]  # Replace template coverage
                     else:
                         t_id_1 = realignment_dict[gene][3]
                         t_id_2 = line.split('\t')[4]
                         if float(t_id_1) < float(t_id_2):
-                            realignment_dict[gene][3] = t_id_2.strip() #Replace template identity
+                            realignment_dict[gene][3] = t_id_2 #Replace template identity
                             realignment_dict[gene][4] = line.split('\t')[5] #Replace template coverage
                             realignment_dict[gene][5] = line.split('\t')[6]  # Replace template coverage
-
+    realignment_dict = reformat_dict(realignment_dict)
 
     keys = list(realignment_dict.keys())
     keys.sort()

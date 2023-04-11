@@ -1,4 +1,5 @@
 import os
+import sys
 
 def realign_consensus(output, prefix, database, keep):
     non_perfect_hits = []

@@ -45,9 +45,6 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
         if float(alignment_dict[item][3]) == 100.00:
             realignment_dict[item] = alignment_dict[item]
 
-    print (realignment_dict)
-    print (alignment_dict)
-
     for item in non_perfect_hits:
         with open('{}/{}.res'.format(output, item[1:]), 'r') as f:
             original_gene = item[1:]

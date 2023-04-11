@@ -10,7 +10,7 @@ def realign_consensus(output, prefix, database, keep):
             line = line.rstrip()
             if not line.startswith('#'):
                 if float(line.split('\t')[4]) < 100.00:
-                    non_perfect_hits.append('>' + line.split('\t')[0])
+                    non_perfect_hits.append('>' + line.split('\t')[0].rstrip())
                 alignment_dict[line.split('\t')[0]] = line.split('\t')[1:]
             else:
                 headers = line

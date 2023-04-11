@@ -54,7 +54,6 @@ def reformat_dict(input_dict):
 def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits):
     realignment_dict = {}
 
-    print (alignment_dict)
     for item in alignment_dict:
         if float(alignment_dict[item][3]) == 100.00:
             realignment_dict[item] = alignment_dict[item]
@@ -71,14 +70,14 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
                         t_id_1 = realignment_dict[gene][3]
                         t_id_2 = line.split('\t')[4]
                         if float(t_id_1) < float(t_id_2):
-                            realignment_dict[gene][3] = t_id_2  # Replace template identity
+                            realignment_dict[gene][3] = t_id_2.strip()  # Replace template identity
                             realignment_dict[gene][4] = line.split('\t')[5]  # Replace template coverage
                             realignment_dict[gene][5] = line.split('\t')[6]  # Replace template coverage
                     else:
                         t_id_1 = realignment_dict[gene][3]
                         t_id_2 = line.split('\t')[4]
                         if float(t_id_1) < float(t_id_2):
-                            realignment_dict[gene][3] = t_id_2 #Replace template identity
+                            realignment_dict[gene][3] = t_id_2.strip() #Replace template identity
                             realignment_dict[gene][4] = line.split('\t')[5] #Replace template coverage
                             realignment_dict[gene][5] = line.split('\t')[6]  # Replace template coverage
 

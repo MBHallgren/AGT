@@ -8,6 +8,8 @@ def realign_consensus(output, prefix, database, keep):
 
     headers, alignment_dict = load_kma_res_file('{}/{}.res'.format(output, prefix))
 
+    print (alignment_dict)
+
     for item in alignment_dict:
         if alignment_dict[item][3] != 100.00 or alignment_dict[item][4] != 100.00 or alignment_dict[item][5] != 100.00:
             non_perfect_hits.append('>' + item)

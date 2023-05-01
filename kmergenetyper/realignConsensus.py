@@ -68,7 +68,7 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
             for line in f:
                 line = line.rstrip()
                 if not line.startswith('#'):
-                    gene = line.split('\t')[0]
+                    gene = line.split('\t')[0].strip()
                     print ('Gene: {}'.format(gene))
                     if gene not in realignment_dict:
                         print ('Gene not in realignment_dict:', gene)

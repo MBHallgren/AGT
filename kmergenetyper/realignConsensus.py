@@ -49,10 +49,10 @@ def load_kma_res_file(file):
             else:
                 line = line.rstrip()
                 line = line.split('\t')
-                kma_dict[line[0]] = []
+                kma_dict[line[0].strip()] = []
                 for item in line[1:-1]:
-                    kma_dict[line[0]].append(float(item.strip()))
-                kma_dict[line[0]].append(line[-1].strip())
+                    kma_dict[line[0].strip()].append(float(item.strip()))
+                kma_dict[line[0].strip()].append(line[-1].strip())
     return header, kma_dict
 def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits):
     realignment_dict = {}

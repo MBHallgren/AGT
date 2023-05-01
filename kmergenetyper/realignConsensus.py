@@ -91,9 +91,15 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
     with open('{}/final_{}.res'.format(output, prefix), 'w') as f:
         print (headers, file=f)
         for item in keys:
-            print_list = [item] + realignment_dict[item]
-            print_list = "\t".join(map(str, print_list))
-            print (print_list, file=f)
+            print_string = '{}\t{}\t{}\t{}\t{}\t' \
+                           '{}\t{}\t{}\t{}\t'{}\t \
+                           '{}' \
+            .format(item, int(realignment_dict[item][0]), int(realignment_dict[item][1]), realignment_dict[item][2],
+                    realignment_dict[item][3], realignment_dict[item][4], realignment_dict[item][5],
+                    realignment_dict[item][6], realignment_dict[item][7], realignment_dict[item][8],
+                    realignment_dict[item][9])
+
+            print (print_string, file=f)
 
     os.system('mv {}/{}.res {}/old_{}.res'.format(output, prefix, output, prefix))
     os.system('mv {}/final_{}.res {}/{}.res'.format(output, prefix, output, prefix))

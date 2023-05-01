@@ -84,9 +84,9 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
                         realignment_dict[gene][4] = float(line.split('\t')[5]) #Replace template coverage
                         realignment_dict[gene][5] = float(line.split('\t')[6])  # Replace query identity
                         realignment_dict[gene][6] = float(line.split('\t')[7])  # Replace Query_Coverage
-                        realignment_dict[gene][7] = max(float(alignment_dict[original_gene][7]), float(alignment_dict[gene][7]) # Select max depth
-                        realignment_dict[gene][8] = max(float(alignment_dict[original_gene][8]), float(alignment_dict[gene][8]) # Select max q_value
-                        realignment_dict[gene][9] = max(float(alignment_dict[original_gene][9]), float(alignment_dict[gene][9]) # Select max p_value
+                        realignment_dict[gene][7] = max(float(alignment_dict[original_gene][7]), float(alignment_dict[gene][7])) # Select max depth
+                        realignment_dict[gene][8] = max(float(alignment_dict[original_gene][8]), float(alignment_dict[gene][8])) # Select max q_value
+                        realignment_dict[gene][9] = max(float(alignment_dict[original_gene][9]), float(alignment_dict[gene][9])) # Select max p_value
     realignment_dict = reformat_dict(realignment_dict)
 
     keys = list(realignment_dict.keys())

@@ -61,23 +61,17 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
         if alignment_dict[item][3] == 100.00 and alignment_dict[item][4] == 100.00 and alignment_dict[item][5] == 100.00: #Perfect alignment for Template_Identity	Template_Coverage	Query_Identity
             realignment_dict[item] = alignment_dict[item]
 
-    print (alignment_dict)
-
-    print (realignment_dict)
-
     for item in non_perfect_hits:
         headers, currect_gene_dict = load_kma_res_file('{}/{}.res'.format(output, item[1:]))
         original_gene = item[1:]
         for gene in currect_gene_dict:
             if gene not in realignment_dict:
-                print ('Gene not in realignment_dict:', gene)
                 realignment_dict[gene] = alignment_dict[original_gene]
                 realignment_dict[gene][3] = float(currect_gene_dict[gene][3]) #Replace template identity
                 realignment_dict[gene][4] = float(currect_gene_dict[gene][4]) #Replace template coverage
                 realignment_dict[gene][5] = float(currect_gene_dict[gene][5])  # Replace query identity
                 realignment_dict[gene][6] = float(currect_gene_dict[gene][6])  # Replace Query_Coverage
             else:
-                print ('Gene in realignment_dict:', gene)
                 realignment_dict[gene][3] = float(currect_gene_dict[gene][3]) #Replace template identity
                 realignment_dict[gene][4] = float(currect_gene_dict[gene][4]) #Replace template coverage
                 realignment_dict[gene][5] = float(currect_gene_dict[gene][5])  # Replace query identity
@@ -87,6 +81,8 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
 
     keys = list(realignment_dict.keys())
     keys.sort()
+
+    print (realignment_dict)
 
     with open('{}/final_{}.res'.format(output, prefix), 'w') as f:
         print (headers, file=f)

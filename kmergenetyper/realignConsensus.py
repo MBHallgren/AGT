@@ -69,7 +69,9 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
                 line = line.rstrip()
                 if not line.startswith('#'):
                     gene = line.split('\t')[0]
+                    print ('Gene: {}'.format(gene))
                     if gene not in realignment_dict:
+                        print ('Gene not in realignment_dict:', gene)
                         realignment_dict[gene] = alignment_dict[original_gene]
                         realignment_dict[gene][3] = line.split('\t')[4] # Replace template identity
                         realignment_dict[gene][4] = line.split('\t')[5]  # Replace template coverage
@@ -78,7 +80,7 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
                         realignment_dict[gene][7] = alignment_dict[original_gene][7]  # Replace depth
                     else:
                         #Gene template already found, sum up depth
-                        print (gene)
+                        print ('Gene in realignment_dict:', gene)
                         print(realignment_dict[gene])
                         realignment_dict[gene][3] = line.split('\t')[4] #Replace template identity
                         realignment_dict[gene][4] = line.split('\t')[5] #Replace template coverage

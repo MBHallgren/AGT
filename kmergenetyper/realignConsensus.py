@@ -51,7 +51,7 @@ def load_kma_res_file(file):
                 line = line.split('\t')
                 kma_dict[line[0].strip()] = []
                 for item in line[1:-1]:
-                    kma_dict[line[0].strip()].append(round(float(item.strip()),2))
+                    kma_dict[line[0].strip()].append(format(float(item), '.2f')
                 kma_dict[line[0].strip()].append(line[-1].strip())
     return header, kma_dict
 def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits):

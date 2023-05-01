@@ -8,13 +8,11 @@ def realign_consensus(output, prefix, database, keep):
 
     headers, alignment_dict = load_kma_res_file('{}/{}.res'.format(output, prefix))
 
-    print (alignment_dict)
 
     for item in alignment_dict:
         if alignment_dict[item][3] != 100.00 or alignment_dict[item][4] != 100.00 or alignment_dict[item][5] != 100.00:
             non_perfect_hits.append('>' + item)
 
-    print (non_perfect_hits)
 
     with open('{}/{}.fsa'.format(output, prefix), 'r') as f:
         flag = False
@@ -81,8 +79,6 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
 
     keys = list(realignment_dict.keys())
     keys.sort()
-
-    print (realignment_dict)
 
     with open('{}/final_{}.res'.format(output, prefix), 'w') as f:
         print (headers, file=f)

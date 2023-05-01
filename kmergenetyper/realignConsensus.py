@@ -46,7 +46,7 @@ def reformat_dict(input_dict):
             output_dict[item.strip()].append(value.strip())
     return output_dict
 
-def load_kma_res_file(file)
+def load_kma_res_file(file):
     kma_dict = dict()
     with open(file, 'r') as f:
         for line in f:

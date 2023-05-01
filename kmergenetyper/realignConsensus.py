@@ -88,8 +88,7 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
         print (headers, file=f)
         for item in keys:
             print_string = '{}\t{}\t{}\t{}\t{}\t' \
-                           '{}\t{}\t{}\t{}\t{}\t' \
-                           '{}' \
+                           '{}\t{}\t{}\t{}\t{}\t{}'\
             .format(item, int(realignment_dict[item][0]), int(realignment_dict[item][1]), realignment_dict[item][2],
                     realignment_dict[item][3], realignment_dict[item][4], realignment_dict[item][5],
                     realignment_dict[item][6], realignment_dict[item][7], realignment_dict[item][8],

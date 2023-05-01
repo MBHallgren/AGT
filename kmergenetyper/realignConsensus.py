@@ -12,8 +12,6 @@ def realign_consensus(output, prefix, database, keep):
         if alignment_dict[item][3] != 100.00 or alignment_dict[item][4] != 100.00 or alignment_dict[item][5] != 100.00:
             non_perfect_hits.append('>' + item)
 
-    alignment_dict = reformat_dict(alignment_dict)
-
     with open('{}/{}.fsa'.format(output, prefix), 'r') as f:
         flag = False
         for line in f:
@@ -37,14 +35,6 @@ def realign_consensus(output, prefix, database, keep):
         for item in non_perfect_hits:
             os.system('rm {}/{}*'.format(output, item[1:]))
         os.system('rm {}/old_*'.format(output, prefix))
-
-def reformat_dict(input_dict):
-    output_dict = {}
-    for item in input_dict:
-        output_dict[item.strip()] = []
-        for value in input_dict[item]:
-            output_dict[item.strip()].append(value.strip())
-    return output_dict
 
 def load_kma_res_file(file):
     kma_dict = dict()
@@ -91,7 +81,6 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
                 realignment_dict[gene][6] = float(currect_gene_dict[gene][6])  # Replace Query_Coverage
                 realignment_dict[gene][7] = max(float(alignment_dict[original_gene][7]), float(currect_gene_dict[gene][7])) # Select max depth
                 realignment_dict[gene][8] = max(float(alignment_dict[original_gene][8]), float(currect_gene_dict[gene][8])) # Select max q_value
-    realignment_dict = reformat_dict(realignment_dict)
 
     keys = list(realignment_dict.keys())
     keys.sort()

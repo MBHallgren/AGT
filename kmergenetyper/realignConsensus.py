@@ -92,7 +92,7 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
         print (headers, file=f)
         for item in keys:
             print_list = [item] + realignment_dict[item]
-            print_list = "\t".join(print_list)
+            print_list = "\t".join(map(str, print_list))
             print (print_list, file=f)
 
     os.system('mv {}/{}.res {}/old_{}.res'.format(output, prefix, output, prefix))

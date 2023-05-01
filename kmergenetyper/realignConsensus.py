@@ -78,11 +78,14 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
                         realignment_dict[gene][7] = alignment_dict[original_gene][7]  # Replace depth
                     else:
                         #Gene template already found, sum up depth
+                        print (gene)
+                        print(realignment_dict[gene])
                         realignment_dict[gene][3] = line.split('\t')[4] #Replace template identity
                         realignment_dict[gene][4] = line.split('\t')[5] #Replace template coverage
                         realignment_dict[gene][5] = line.split('\t')[6]  # Replace query identity
                         realignment_dict[gene][6] = line.split('\t')[7]  # Replace Query_Coverage
                         realignment_dict[gene][7] += alignment_dict[original_gene][7]  # Sum up depth
+                        print(realignment_dict[gene])
     realignment_dict = reformat_dict(realignment_dict)
 
     keys = list(realignment_dict.keys())

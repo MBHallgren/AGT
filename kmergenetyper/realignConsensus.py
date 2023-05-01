@@ -12,6 +12,8 @@ def realign_consensus(output, prefix, database, keep):
         if alignment_dict[item][3] != 100.00 or alignment_dict[item][4] != 100.00 or alignment_dict[item][5] != 100.00:
             non_perfect_hits.append('>' + item)
 
+    print (non_perfect_hits)
+
     with open('{}/{}.fsa'.format(output, prefix), 'r') as f:
         flag = False
         for line in f:
@@ -64,7 +66,6 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
     for item in non_perfect_hits:
         headers, currect_gene_dict = load_kma_res_file('{}/{}.res'.format(output, item[1:]))
         original_gene = item[1:]
-
         for gene in currect_gene_dict:
             if gene not in realignment_dict:
                 print ('Gene not in realignment_dict:', gene)

@@ -12,7 +12,7 @@ def realign_consensus(output, prefix, database, keep):
                 line = line.split('\t')
                 for item in line:
                     item = item.strip()
-                if float(line[4]) < 100.00:
+                if float(line[4]) != 100.00 or float(line[5]) != 100.00 or float(line[6]) != 100.00: #Non perfect alignment for Template_Identity	Template_Coverage	Query_Identity
                     non_perfect_hits.append('>' + line[0].strip())
                 alignment_dict[line[0]] = line[1:]
             else:
@@ -55,7 +55,7 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
     realignment_dict = {}
 
     for item in alignment_dict:
-        if float(alignment_dict[item][3]) == 100.00:
+        if float(alignment_dict[item][3]) == 100.00 and float(alignment_dict[item][4]) == 100.00 and float(alignment_dict[item][5]) == 100.00: #Perfect alignment for Template_Identity	Template_Coverage	Query_Identity
             realignment_dict[item] = alignment_dict[item]
 
     for item in non_perfect_hits:
@@ -72,14 +72,14 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
                         if float(t_id_1) < float(t_id_2):
                             realignment_dict[gene][3] = t_id_2 # Replace template identity
                             realignment_dict[gene][4] = line.split('\t')[5]  # Replace template coverage
-                            realignment_dict[gene][5] = line.split('\t')[6]  # Replace template coverage
+                            realignment_dict[gene][5] = line.split('\t')[6]  # Replace query identity
                     else:
                         t_id_1 = realignment_dict[gene][3]
                         t_id_2 = line.split('\t')[4]
                         if float(t_id_1) < float(t_id_2):
                             realignment_dict[gene][3] = t_id_2 #Replace template identity
                             realignment_dict[gene][4] = line.split('\t')[5] #Replace template coverage
-                            realignment_dict[gene][5] = line.split('\t')[6]  # Replace template coverage
+                            realignment_dict[gene][5] = line.split('\t')[6]  # Replace query identity
     realignment_dict = reformat_dict(realignment_dict)
 
     keys = list(realignment_dict.keys())

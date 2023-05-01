@@ -10,11 +10,12 @@ def realign_consensus(output, prefix, database, keep):
             line = line.strip()
             if not line.startswith('#'):
                 line = line.split('\t')
-                for item in line:
-                    item = item.strip()
-                if float(line[4]) != 100.00 or float(line[5]) != 100.00 or float(line[6]) != 100.00: #Non perfect alignment for Template_Identity	Template_Coverage	Query_Identity
+                if float(line[4].strip()) != 100.00 or float(line[5].strip()) != 100.00 or float(line[6].strip()) != 100.00: #Non perfect alignment for Template_Identity	Template_Coverage	Query_Identity
                     non_perfect_hits.append('>' + line[0].strip())
-                alignment_dict[line[0]] = line[1:]
+                alignment_dict[line[0]] = []
+                for item in line[1:-1]:
+                    alignment_dict[line[0]].append(float(item.strip()))
+                alignment_dict[line[0]].append(line[-1].strip())
             else:
                 headers = line
 
@@ -73,21 +74,19 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
                     if gene not in realignment_dict:
                         print ('Gene not in realignment_dict:', gene)
                         realignment_dict[gene] = alignment_dict[original_gene]
-                        realignment_dict[gene][3] = line.split('\t')[4] # Replace template identity
-                        realignment_dict[gene][4] = line.split('\t')[5]  # Replace template coverage
-                        realignment_dict[gene][5] = line.split('\t')[6]  # Replace query identity
-                        realignment_dict[gene][6] = line.split('\t')[7]  # Replace Query_Coverage
+                        realignment_dict[gene][3] = float(line.split('\t')[4]) # Replace template identity
+                        realignment_dict[gene][4] = float(line.split('\t')[5])  # Replace template coverage
+                        realignment_dict[gene][5] = float(line.split('\t')[6])  # Replace query identity
+                        realignment_dict[gene][6] = float(line.split('\t')[7])  # Replace Query_Coverage
                         realignment_dict[gene][7] = alignment_dict[original_gene][7]  # Replace depth
                     else:
-                        #Gene template already found, sum up depth
-                        print ('Gene in realignment_dict:', gene)
-                        print(realignment_dict[gene])
-                        realignment_dict[gene][3] = line.split('\t')[4] #Replace template identity
-                        realignment_dict[gene][4] = line.split('\t')[5] #Replace template coverage
-                        realignment_dict[gene][5] = line.split('\t')[6]  # Replace query identity
-                        realignment_dict[gene][6] = line.split('\t')[7]  # Replace Query_Coverage
-                        realignment_dict[gene][7] += alignment_dict[original_gene][7]  # Sum up depth
-                        print(realignment_dict[gene])
+                        realignment_dict[gene][3] = float(line.split('\t')[4]) #Replace template identity
+                        realignment_dict[gene][4] = float(line.split('\t')[5]) #Replace template coverage
+                        realignment_dict[gene][5] = float(line.split('\t')[6])  # Replace query identity
+                        realignment_dict[gene][6] = float(line.split('\t')[7])  # Replace Query_Coverage
+                        realignment_dict[gene][7] = max(float(alignment_dict[original_gene][7]), float(alignment_dict[gene][7]) # Select max depth
+                        realignment_dict[gene][8] = max(float(alignment_dict[original_gene][8]), float(alignment_dict[gene][8]) # Select max q_value
+                        realignment_dict[gene][9] = max(float(alignment_dict[original_gene][9]), float(alignment_dict[gene][9]) # Select max p_value
     realignment_dict = reformat_dict(realignment_dict)
 
     keys = list(realignment_dict.keys())

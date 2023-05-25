@@ -1,0 +1,19 @@
+package:
+  name: kma
+  version: 1.0.13
+
+source:
+  url: https://github.com/genomicepidemiology/kmergenetyper
+
+build:
+  number: 2
+
+requirements:
+  build:
+  host:
+  run:
+
+about:
+  home: https://github.com/genomicepidemiology/kmergenetyper
+  summary: 'Kmergenetyper test.'
+  license: Apache-2.0

@@ -5,7 +5,7 @@ def fix_names(item):
     if '\'' in item:
         item = item.replace('\'', '')
     if '(' in item:
-        item = '\'' + item + '\''
+        item = item.replace('(', '')
     if ')' in item:
         item = item.replace(')', '')
     return item

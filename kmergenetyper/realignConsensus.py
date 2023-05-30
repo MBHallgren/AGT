@@ -30,12 +30,12 @@ def realign_consensus(output, prefix, database, keep):
             if line.startswith('>'):
                 header = fix_names(line[1:])
                 print (header)
-                if header[1:] in non_perfect_hits:
+                if header in non_perfect_hits:
                     flag = True
                 else:
                     flag = False
             if flag:
-                with open('{}/{}.fsa'.format(output, header[1:]), 'a') as f:
+                with open('{}/{}.fsa'.format(output, header), 'a') as f:
                     print (line, file=f)
 
     print (non_perfect_hits)

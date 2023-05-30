@@ -28,7 +28,7 @@ def realign_consensus(output, prefix, database, keep):
                 if '\'' in header:
                     output_name = '\'' + header[1:] + '\''
                 else:
-                    output_name¨
+                    output_name
                 with open('{}/{}.fsa'.format(output, output_name), 'a') as f:
                     print (line, file=f)
 

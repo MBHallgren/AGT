@@ -35,7 +35,7 @@ def realign_consensus(output, prefix, database, keep):
                 else:
                     flag = False
             if flag:
-                with open('{}/{}.fsa'.format(output, output_name), 'a') as f:
+                with open('{}/{}.fsa'.format(output, header), 'a') as f:
                     print (line, file=f)
 
     print (non_perfect_hits)

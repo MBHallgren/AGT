@@ -22,6 +22,7 @@ def realign_consensus(output, prefix, database, keep):
         if alignment_dict[item][3] != 100.00 or alignment_dict[item][4] != 100.00 or alignment_dict[item][5] != 100.00:
             item = fix_names(item)
             non_perfect_hits.append(item)
+    print (non_perfect_hits)
 
     with open('{}/{}.fsa'.format(output, prefix), 'r') as f:
         flag = False
@@ -29,6 +30,7 @@ def realign_consensus(output, prefix, database, keep):
             line = line.rstrip()
             if line.startswith('>'):
                 header = fix_names(line[1:])
+                print (header)
                 if header in non_perfect_hits:
                     flag = True
                 else:
@@ -36,6 +38,7 @@ def realign_consensus(output, prefix, database, keep):
             if flag:
                 with open('{}/{}.fsa'.format(output, header), 'a') as f:
                     print (line, file=f)
+    sys.exit()
 
     for item in non_perfect_hits:
         cmd = 'kma -i {}/{}.fsa -o {}/{} -t_db {} -1t1 -proxi -0.95'.format(output, item, output, item, database)

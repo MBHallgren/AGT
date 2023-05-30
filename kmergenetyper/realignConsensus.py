@@ -33,11 +33,12 @@ def realign_consensus(output, prefix, database, keep):
     print (non_perfect_hits)
 
     for item in non_perfect_hits:
+        item = item[1:]
         if '\'' in item:
             item = item.replace('\'', '')
         if '(' in item:
             item = '\'' + item + '\''
-        cmd = 'kma -i {}/{}.fsa -o {}/{} -t_db {} -1t1 -proxi -0.95'.format(output, item[1:], output, item[1:], database)
+        cmd = 'kma -i {}/{}.fsa -o {}/{} -t_db {} -1t1 -proxi -0.95'.format(output, item, output, item, database)
         print (cmd)
         os.system(cmd)
 

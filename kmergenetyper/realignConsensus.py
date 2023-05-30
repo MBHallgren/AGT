@@ -28,6 +28,8 @@ def realign_consensus(output, prefix, database, keep):
                 with open('{}/{}.fsa'.format(output, header[1:]), 'a') as f:
                     print (line, file=f)
 
+    print (non_perfect_hits)
+
     for item in non_perfect_hits:
         os.system('kma -i {}/{}.fsa -o {}/{} -t_db {} -1t1 -proxi -0.95'.format(output, item[1:], output, item[1:], database))
 

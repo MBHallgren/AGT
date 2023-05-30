@@ -17,11 +17,14 @@ def realign_consensus(output, prefix, database, keep):
 
     headers, alignment_dict = load_kma_res_file('{}/{}.res'.format(output, prefix))
 
+    original_template_names = {}
+
 
     for item in alignment_dict:
         if alignment_dict[item][3] != 100.00 or alignment_dict[item][4] != 100.00 or alignment_dict[item][5] != 100.00:
-            item = fix_names(item)
-            non_perfect_hits.append(item)
+            fixed_name = fix_names(item)
+            original_template_names[fixed_name] = item
+            non_perfect_hits.append(fixed_name)
 
     with open('{}/{}.fsa'.format(output, prefix), 'r') as f:
         flag = False
@@ -41,7 +44,7 @@ def realign_consensus(output, prefix, database, keep):
         cmd = 'kma -i {}/gene_{}.fsa -o {}/{} -t_db {} -1t1 -proxi -0.95'.format(output, item, output, item, database)
         os.system(cmd)
 
-    eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
+    eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits, original_template_names)
 
     if not keep:
         for item in non_perfect_hits:
@@ -62,7 +65,7 @@ def load_kma_res_file(file):
                     kma_dict[line[0].strip()].append(float(item.rstrip()))
                 kma_dict[line[0].strip()].append(line[-1].strip())
     return header, kma_dict
-def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits):
+def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits, original_template_names):
     realignment_dict = {}
 
     for item in alignment_dict:
@@ -71,7 +74,7 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
 
     for item in non_perfect_hits:
         headers, currect_gene_dict = load_kma_res_file('{}/{}.res'.format(output, item))
-        original_gene = item #REPLACE WITH ORIGINAL GENE NAME, with ' and ()
+        original_gene = original_template_names[item]
         for gene in currect_gene_dict:
             if gene not in realignment_dict:
                 realignment_dict[gene] = alignment_dict[original_gene]

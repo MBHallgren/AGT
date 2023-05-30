@@ -35,12 +35,18 @@ def realign_consensus(output, prefix, database, keep):
     for item in non_perfect_hits:
         if '\'' in item:
             item = item.replace('\'', '')
+        if '(' in item:
+            item = '\'' + item + '\''
         os.system('kma -i {}/{}.fsa -o {}/{} -t_db {} -1t1 -proxi -0.95'.format(output, item[1:], output, item[1:], database))
 
     eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
 
     if not keep:
         for item in non_perfect_hits:
+            if '\'' in item:
+                item = item.replace('\'', '')
+            if '(' in item:
+                item = '\'' + item + '\''
             os.system('rm {}/{}*'.format(output, item[1:]))
         os.system('rm {}/old_*'.format(output, prefix))
 

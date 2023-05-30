@@ -37,7 +37,9 @@ def realign_consensus(output, prefix, database, keep):
             item = item.replace('\'', '')
         if '(' in item:
             item = '\'' + item + '\''
-        os.system('kma -i {}/{}.fsa -o {}/{} -t_db {} -1t1 -proxi -0.95'.format(output, item[1:], output, item[1:], database))
+        cmd = 'kma -i {}/{}.fsa -o {}/{} -t_db {} -1t1 -proxi -0.95'.format(output, item[1:], output, item[1:], database)
+        print (cmd)
+        os.system(cmd)
 
     eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
 

@@ -34,14 +34,12 @@ def realign_consensus(output, prefix, database, keep):
                 else:
                     flag = False
             if flag:
-                with open('{}/{}.fsa'.format(output, header), 'a') as f:
+                with open('{}/gene_{}.fsa'.format(output, header), 'a') as f:
                     print (line, file=f)
 
     for item in non_perfect_hits:
-        cmd = 'kma -i {}/{}.fsa -o {}/{} -t_db {} -1t1 -proxi -0.95'.format(output, item, output, item, database)
+        cmd = 'kma -i {}/gene_{}.fsa -o {}/{} -t_db {} -1t1 -proxi -0.95'.format(output, item, output, item, database)
         os.system(cmd)
-
-    sys.exit('test')
 
     eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
 

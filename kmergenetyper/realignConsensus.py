@@ -38,7 +38,7 @@ def realign_consensus(output, prefix, database, keep):
                     print (line, file=f)
 
     for item in non_perfect_hits:
-        cmd = 'kma -i {}/{}.fsa -o {}/{} -t_db {} -1t1 -proxi -0.95'.format(output, item[1:], output, item[1:], database)
+        cmd = 'kma -i {}/{}.fsa -o {}/{} -t_db {} -1t1 -proxi -0.95'.format(output, item, output, item, database)
         os.system(cmd)
 
     eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)

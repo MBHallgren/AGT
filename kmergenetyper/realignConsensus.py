@@ -70,8 +70,8 @@ def eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits)
             realignment_dict[item] = alignment_dict[item]
 
     for item in non_perfect_hits:
-        headers, currect_gene_dict = load_kma_res_file('{}/{}.res'.format(output, item[1:]))
-        original_gene = item[1:]
+        headers, currect_gene_dict = load_kma_res_file('{}/{}.res'.format(output, item))
+        original_gene = item #REPLACE WITH ORIGINAL GENE NAME, with ' and ()
         for gene in currect_gene_dict:
             if gene not in realignment_dict:
                 realignment_dict[gene] = alignment_dict[original_gene]

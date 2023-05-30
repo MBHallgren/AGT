@@ -23,14 +23,13 @@ def realign_consensus(output, prefix, database, keep):
             item = fix_names(item)
             non_perfect_hits.append(item)
 
-    sys.exit(non_perfect_hits)
-
     with open('{}/{}.fsa'.format(output, prefix), 'r') as f:
         flag = False
         for line in f:
             line = line.rstrip()
             if line.startswith('>'):
                 header = '>' + fix_names(line[1:])
+                print (header)
                 if line in non_perfect_hits:
                     flag = True
                 else:

@@ -1,6 +1,15 @@
 import os
 import sys
 
+def fix_names(item):
+    if '\'' in item:
+        item = item.replace('\'', '')
+    if '(' in item:
+        item = '\'' + item + '\''
+    if ')' in item:
+        item = item.replace(')', '')
+    return item
+
 def realign_consensus(output, prefix, database, keep):
     non_perfect_hits = []
     alignment_dict = {}
@@ -11,6 +20,7 @@ def realign_consensus(output, prefix, database, keep):
 
     for item in alignment_dict:
         if alignment_dict[item][3] != 100.00 or alignment_dict[item][4] != 100.00 or alignment_dict[item][5] != 100.00:
+            item = fix_names(item)
             non_perfect_hits.append('>' + item)
 
 
@@ -19,16 +29,12 @@ def realign_consensus(output, prefix, database, keep):
         for line in f:
             line = line.rstrip()
             if line.startswith('>'):
-                header = line
+                header = '>' + fix_names(line[1:])
                 if line in non_perfect_hits:
                     flag = True
                 else:
                     flag = False
             if flag:
-                if '\'' in header:
-                    output_name = '\'' + header[1:] + '\''
-                else:
-                    output_name
                 with open('{}/{}.fsa'.format(output, output_name), 'a') as f:
                     print (line, file=f)
 

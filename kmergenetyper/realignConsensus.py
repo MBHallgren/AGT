@@ -21,8 +21,9 @@ def realign_consensus(output, prefix, database, keep):
     for item in alignment_dict:
         if alignment_dict[item][3] != 100.00 or alignment_dict[item][4] != 100.00 or alignment_dict[item][5] != 100.00:
             item = fix_names(item)
-            non_perfect_hits.append('>' + item)
+            non_perfect_hits.append(item)
 
+    sys.exit(non_perfect_hits)
 
     with open('{}/{}.fsa'.format(output, prefix), 'r') as f:
         flag = False

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-pip install kmergenetyper
+python3 setup.py install

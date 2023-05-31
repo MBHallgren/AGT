@@ -3,7 +3,8 @@ package:
   version: 1.0.13
 
 source:
-  url: https://github.com/genomicepidemiology/kmergenetyper/archive/refs/tags/v1.0.16.tar.gz
+  url: https://files.pythonhosted.org/packages/d2/08/8c7b265b349069d6e31a0e7dcff02504bf65e718bfe2caf9004322c39b37/kmergenetyper-1.0.15.tar.gz
+  sha256: 18095ab384b940e1c90f525a4568f736ac055a82f703ff8c344fb659735868fe
 
 build:
   number: 2

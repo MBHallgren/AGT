@@ -60,6 +60,6 @@ jobs:
           AnacondaToken: ${{ secrets.GENOMICEPIDEMIOLOGY_CONDA_AUTH_TOKEN }}
           publish: true
           test_all: true
-          convert_osx: true
+          #convert_osx: true
 
 

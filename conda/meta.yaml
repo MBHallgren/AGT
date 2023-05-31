@@ -15,6 +15,7 @@ requirements:
   host:
     - python >=3.6
     - pip
+    - kma >=1.4.9
   run:
     - python >=3.6
     - kma >=1.4.9

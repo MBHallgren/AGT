@@ -3,7 +3,10 @@ channels:
   - conda-forge
   - bioconda
   - defaults
-kma: '1.4.9'
-python:
-  min_pin: 3.3
-  max_pin: x.x
+dependencies:
+  - kma=1.4.9
+pin_run_as_build:
+  python:
+    min_pin: x.x
+    max_pin: x.x
+python: '3.7'

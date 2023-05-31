@@ -14,9 +14,9 @@ requirements:
   host:
     - python
     - pip
+    - setuptools
   run:
     - python
-    - kma >=1.4.9
 
 about:
   home: https://github.com/genomicepidemiology/kmergenetyper

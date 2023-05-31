@@ -8,14 +8,14 @@ source:
 
 build:
   number: 2
-  #script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
 
 requirements:
   build:
-    - python >= 3.8
+    - python
     - setuptools
   run:
-    - python >= 3.8
+    - python
 
 about:
   home: https://github.com/genomicepidemiology/kmergenetyper

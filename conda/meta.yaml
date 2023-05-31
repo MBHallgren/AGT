@@ -12,10 +12,10 @@ build:
 
 requirements:
   build:
-    - python >=3.6
+    - python
     - setuptools
   run:
-    - python >=3.6
+    - python
 
 about:
   home: https://github.com/genomicepidemiology/kmergenetyper

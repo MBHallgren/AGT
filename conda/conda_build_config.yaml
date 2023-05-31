@@ -1,6 +1,9 @@
 channels:
+  #- genomicepidemiology
   - conda-forge
   - bioconda
   - defaults
-dependencies:
-  - kma=1.4.9
+kma: '1.4.9'
+python:
+  min_pin: 3.3
+  max_pin: x.x

@@ -7,9 +7,12 @@ source:
 
 build:
   number: 2
+  script: pip install kmergenetyper
 
 requirements:
   build:
+    - python >=3.8
+    - pip
   host:
   run:
 

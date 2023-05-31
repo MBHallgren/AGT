@@ -8,14 +8,15 @@ source:
 
 build:
   number: 2
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+  skip: True  # [py<34]
 
 requirements:
-  build:
+  host:
     - python
-    - setuptools
+    - pip
   run:
     - python
+    - kma >=1.4.9
 
 about:
   home: https://github.com/genomicepidemiology/kmergenetyper

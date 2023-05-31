@@ -13,7 +13,11 @@ requirements:
     - python >=3.8
     - pip
   host:
+    - python >=3.8
+    - pip
   run:
+    - python >=3.8
+    - pip
 
 about:
   home: https://github.com/genomicepidemiology/kmergenetyper

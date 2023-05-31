@@ -10,13 +10,13 @@ build:
 
 requirements:
   build:
-    - python >=3.8
+    - python >=3.6
     - pip
   host:
-    - python >=3.8
+    - python >=3.6
     - pip
   run:
-    - python >=3.8
+    - python >=3.6
     - pip
 
 about:

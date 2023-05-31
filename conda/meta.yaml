@@ -8,15 +8,15 @@ source:
 
 build:
   number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  noarch: python
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv"
 
 requirements:
   host:
-    - python
+    - python >=3.6
     - pip
   run:
-    - python
-
+    - python >=3.6
 about:
   home: https://github.com/genomicepidemiology/kmergenetyper
   summary: 'Kmergenetyper test.'

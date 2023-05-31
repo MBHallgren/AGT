@@ -3,22 +3,18 @@ package:
   version: 1.0.13
 
 source:
-  url: https://files.pythonhosted.org/packages/d2/08/8c7b265b349069d6e31a0e7dcff02504bf65e718bfe2caf9004322c39b37/kmergenetyper-1.0.15.tar.gz
-  sha256: 18095ab384b940e1c90f525a4568f736ac055a82f703ff8c344fb659735868fe
+
 
 build:
   number: 2
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
 
 requirements:
   build:
-    - python >=3.6
-    - pip
-  host:
-    - python >=3.6
-    - pip
+    - python
+    - setuptools
   run:
-    - python >=3.6
-    - pip
+    - python
 
 about:
   home: https://github.com/genomicepidemiology/kmergenetyper

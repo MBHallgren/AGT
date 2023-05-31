@@ -15,10 +15,10 @@ requirements:
   host:
     - python >=3.6
     - pip
-    - kma
+    - kma >=1.4.9
   run:
     - python >=3.6
-    - kma
+    - kma >=1.4.9
 about:
   home: https://github.com/genomicepidemiology/kmergenetyper
   summary: 'Kmergenetyper test.'

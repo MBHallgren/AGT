@@ -56,7 +56,7 @@ jobs:
         uses: paskino/conda-package-publish-action@master
         with:
           subDir: 'conda'
-          channels: 'conda-forge -c bioconda -c defaults'
+          channels: '-c conda-forge -c bioconda -c defaults'
           AnacondaToken: ${{ secrets.GENOMICEPIDEMIOLOGY_CONDA_AUTH_TOKEN }}
           publish: true
           test_all: true

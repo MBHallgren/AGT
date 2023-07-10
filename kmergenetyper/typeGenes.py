@@ -50,8 +50,8 @@ def derive_prefix(file):
 
 def set_up_output_directory(output):
     print ('Output directory: {}'.format(output))
-    if not os.path.exists(output):
-        os.makedirs(output)
+    if not os.path.isdir(output):
+        os.mkdir(output
 
 def check_for_kma():
     """Checks if kma is installed"""

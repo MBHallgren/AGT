@@ -6,8 +6,7 @@ from kmergenetyper import realignConsensus
 
 def type_genes(args):
     check_for_kma()
-    print (args)
-    set_up_output_directory(args.output)
+    os.mkdir(args.output)
     collections = check_prefix_collisions(args)
     if args.illumina != []:
         args.illumina.sort()
@@ -48,11 +47,6 @@ def check_prefix_collisions(args):
     return collisions
 def derive_prefix(file):
     return os.path.basename(file).split('.')[0]
-
-def set_up_output_directory(output):
-    print ('Output directory: {}'.format(output))
-    if not os.path.isdir(output):
-        os.mkdir(output)
 
 def check_for_kma():
     """Checks if kma is installed"""

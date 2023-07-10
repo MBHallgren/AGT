@@ -14,7 +14,9 @@ def type_genes(args):
             if prefix in collections:
                 prefix = prefix + '_illumina'
             input_seqs = ' '.join(args.illumina[i:i+2])
-            os.system('kma -ipe {} -o {}/{} -t_db {} -ill -md {} -ID 95 -eq {} -t {}'.format(input_seqs, args.output, prefix, args.t_db, args.md, args.q_score, args.threads))
+            cmd = 'kma -ipe {} -o {}/{} -t_db {} -ill -md {} -ID 95 -eq {} -t {}'.format(input_seqs, args.output, prefix, args.t_db, args.md, args.q_score, args.threads)
+            print (cmd)
+            os.system(cmd)
             realignConsensus.realign_consensus(args.output, prefix, args.t_db, args.keep, args.threads)
     if args.nanopore != []:
         for item in args.nanopore:

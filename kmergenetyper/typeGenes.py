@@ -6,6 +6,7 @@ from kmergenetyper import realignConsensus
 
 def type_genes(args):
     check_for_kma()
+    print (args)
     set_up_output_directory(args.output)
     collections = check_prefix_collisions(args)
     if args.illumina != []:

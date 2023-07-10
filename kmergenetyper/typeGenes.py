@@ -6,6 +6,7 @@ from kmergenetyper import realignConsensus
 
 def type_genes(args):
     check_for_kma()
+    os.system('mkdir -p {}'.format(args.output))
     collections = check_prefix_collisions(args)
     if args.illumina != []:
         args.illumina.sort()

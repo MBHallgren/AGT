@@ -49,7 +49,7 @@ def derive_prefix(file):
     return os.path.basename(file).split('.')[0]
 
 def set_up_output_directory(output):
-    print ('Output directory: {}'.format(output)
+    print ('Output directory: {}'.format(output))
     if not os.path.exists(output):
         os.makedirs(output)
 

@@ -10,7 +10,7 @@ def fix_names(item):
         item = item.replace(')', '')
     return item
 
-def realign_consensus(output, prefix, database, keep):
+def realign_consensus(output, prefix, database, keep, threads):
     non_perfect_hits = []
     alignment_dict = {}
     headers = ''
@@ -41,7 +41,7 @@ def realign_consensus(output, prefix, database, keep):
                     print (line, file=f)
 
     for item in non_perfect_hits:
-        cmd = 'kma -i {}/gene_{}.fsa -o {}/{} -t_db {} -1t1 -proxi -0.95'.format(output, item, output, item, database)
+        cmd = 'kma -i {}/gene_{}.fsa -o {}/{} -t_db {} -1t1 -proxi -0.95 -t {}'.format(output, item, output, item, database, threads)
         os.system(cmd)
 
     eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits, original_template_names)

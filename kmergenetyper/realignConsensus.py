@@ -48,7 +48,7 @@ def realign_consensus(output, prefix, database, keep, threads):
 
     if not keep:
         for item in non_perfect_hits:
-            os.system('rm {}/{}*'.format(output, item[1:]))
+            os.system('rm {}/{}.fsa'.format(output, item))
         os.system('rm {}/old_*'.format(output, prefix))
 
 def load_kma_res_file(file):

@@ -23,8 +23,8 @@ def main():
                         default=[], help='Illumina input files. Must be paired-end.')
     parser.add_argument('-nanopore', action="store", type=str, dest='nanopore', nargs="+",
                         default=[], help='Nanopore input files.')
-    parser.add_argument('-md', action="store", type=int, default=5, dest='md',
-                        help='Minimum depth. Default: 5')
+    parser.add_argument('-md', action="store", type=float, default=5.0, dest='md',
+                        help='Minimum depth. Default: 5.0')
     parser.add_argument('-t', action="store", type=int, default=4, dest='threads',
                         help='Number of threads. Default: 4')
     parser.add_argument('-t_db', action="store", type=str, dest='t_db', help='KMA indexed database')

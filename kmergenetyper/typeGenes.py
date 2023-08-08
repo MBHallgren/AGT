@@ -22,6 +22,7 @@ def type_genes(args):
             prefix = derive_prefix(item)
             if prefix in collections:
                 prefix = prefix + '_nanopore'
+            print ('kma -i {} -o {}/{} -t_db {} -ont -md {} -ID 95 -eq {} -t {}'.format(item, args.output, prefix, args.t_db, args.md, args.q_score, args.threads))
             os.system('kma -i {} -o {}/{} -t_db {} -ont -md {} -ID 95 -eq {} -t {}'.format(item, args.output, prefix, args.t_db, args.md, args.q_score, args.threads))
             realignConsensus.realign_consensus(args.output, prefix, args.t_db, args.keep, args.threads)
     if args.fasta != []:

@@ -31,6 +31,13 @@ def type_genes(args):
                 prefix = prefix + '_fasta'
             os.system('kma -i {} -o {}/{} -t_db {} -md 0.1 -ID 95 -t {}'.format(item, args.output, prefix, args.t_db, args.threads))
             realignConsensus.realign_consensus(args.output, prefix, args.t_db, args.keep, args.threads)
+    if args.nano_contamination != []:
+        for item in args.contamination:
+            prefix = derive_prefix(item)
+            if prefix in collections:
+                prefix = prefix + '_contamination'
+            os.system('kma -i {} -o {}/{} -t_db {} -ill -md {} -ID 95 -eq {} -t {}'.format(item, args.output, prefix, args.t_db, args.md, args.q_score, args.threads))
+            realignConsensus.realign_consensus(args.output, prefix, args.t_db, args.keep, args.threads)
 
 def check_prefix_collisions(args):
     prefixes = []

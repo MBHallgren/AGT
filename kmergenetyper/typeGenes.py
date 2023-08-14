@@ -15,29 +15,29 @@ def type_genes(args):
             if prefix in collections:
                 prefix = prefix + '_illumina'
             input_seqs = ' '.join(args.illumina[i:i+2])
-            os.system('kma -ipe {} -o {}/{} -t_db {} -ill -md {} -ID 95 -eq {} -t {}'.format(input_seqs, args.output, prefix, args.t_db, args.md, args.q_score, args.threads))
+            os.system('kma -ipe {} -o {}/{} -t_db {} -ill -md {} -ID {} -eq {} -t {}'.format(input_seqs, args.output, prefix, args.t_db, args.md, args.id, args.q_score, args.threads))
             realignConsensus.realign_consensus(args.output, prefix, args.t_db, args.keep, args.threads)
     if args.nanopore != []:
         for item in args.nanopore:
             prefix = derive_prefix(item)
             if prefix in collections:
                 prefix = prefix + '_nanopore'
-            print ('kma -i {} -o {}/{} -t_db {} -ont -md {} -ID 95 -eq {} -t {}'.format(item, args.output, prefix, args.t_db, args.md, args.q_score, args.threads))
-            os.system('kma -i {} -o {}/{} -t_db {} -ont -md {} -ID 95 -eq {} -t {}'.format(item, args.output, prefix, args.t_db, args.md, args.q_score, args.threads))
+            print ('kma -i {} -o {}/{} -t_db {} -ont -md {} -ID {} -eq {} -t {}'.format(item, args.output, prefix, args.t_db, args.md,  args.id, args.q_score, args.threads))
+            os.system('kma -i {} -o {}/{} -t_db {} -ont -md {} -ID {} -eq {} -t {}'.format(item, args.output, prefix, args.t_db, args.md,  args.id, args.q_score, args.threads))
             realignConsensus.realign_consensus(args.output, prefix, args.t_db, args.keep, args.threads)
     if args.fasta != []:
         for item in args.fasta:
             prefix = derive_prefix(item)
             if prefix in collections:
                 prefix = prefix + '_fasta'
-            os.system('kma -i {} -o {}/{} -t_db {} -md 0.1 -ID 95 -t {}'.format(item, args.output, prefix, args.t_db, args.threads))
+            os.system('kma -i {} -o {}/{} -t_db {} -md 0.1 -ID {} -t {}'.format(item, args.output, prefix, args.t_db,  args.id, args.threads))
             realignConsensus.realign_consensus(args.output, prefix, args.t_db, args.keep, args.threads)
     if args.nano_contamination != []:
         for item in args.nano_contamination:
             prefix = derive_prefix(item)
             if prefix in collections:
                 prefix = prefix + '_contamination'
-            os.system('kma -i {} -o {}/{} -t_db {} -ill -md {} -ID 95 -eq {} -t {}'.format(item, args.output, prefix, args.t_db, args.md, args.q_score, args.threads))
+            os.system('kma -i {} -o {}/{} -t_db {} -ill -md {} -ID {} -eq {} -t {}'.format(item, args.output, prefix, args.t_db, args.md,  args.id, args.q_score, args.threads))
             realignConsensus.realign_consensus(args.output, prefix, args.t_db, args.keep, args.threads)
 
 def check_prefix_collisions(args):

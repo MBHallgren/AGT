@@ -4,7 +4,7 @@ import sys
 
 sys.path = [os.path.join(os.path.dirname(os.path.realpath(__file__)), '')] + sys.path
 
-import version
+import kmergenetyper.version as version
 
 data = {
     "package": {
@@ -37,7 +37,6 @@ data = {
 }
 
 # Convert the data to YAML and print it
-print (os.system('pwd'))
 yaml_str = yaml.dump(data, sort_keys=False)
 
 with open('conda/meta.yaml', 'w') as f:

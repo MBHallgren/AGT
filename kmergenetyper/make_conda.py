@@ -1,6 +1,7 @@
 import yaml
 import os
 import sys
+
 sys.path = [os.path.join(os.path.dirname(os.path.realpath(__file__)), '')] + sys.path
 
 from kmergenetyper import version

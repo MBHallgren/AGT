@@ -36,6 +36,7 @@ data = {
 }
 
 # Convert the data to YAML and print it
-yaml_str = yaml.dump(data, default_flow_style=False)
+yaml_str = yaml.dump(data, sort_keys=False)
+
 with open('conda/meta.yaml', 'w') as f:
     f.write(yaml_str)

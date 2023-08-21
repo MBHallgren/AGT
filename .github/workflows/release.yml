@@ -53,10 +53,6 @@ jobs:
         with:
           environment-file: envs/osx-build.yml
 
-      - name: check solution
-        run: |
-          mamba env export
-
       - name: build conda package
         run: |
           conda env update --name osx-build --file envs/osx-build.yml
@@ -91,10 +87,6 @@ jobs:
       - uses: mamba-org/setup-micromamba@v1
         with:
           environment-file: envs/linux-build.yml
-
-      - name: check solution
-        run: |
-          mamba env export
 
       - name: build conda package
         run: |

@@ -36,9 +36,6 @@ data = {
     }
 }
 
-os.system('pwd')
-os.system('ls -l')
-
 # Convert the data to YAML and print it
 os.system('mkdir conda')
 yaml_str = yaml.dump(data, sort_keys=False)

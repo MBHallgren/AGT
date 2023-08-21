@@ -93,7 +93,7 @@ jobs:
           python conda/make_conda.py
 
       - name: create environment with mamba
-      - uses: conda-incubator/setup-miniconda@v2
+        uses: conda-incubator/setup-miniconda@v2
         with:
           python-version: 3.6
           mamba-version: "*"

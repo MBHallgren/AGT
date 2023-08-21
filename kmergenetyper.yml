@@ -2,5 +2,7 @@ channels:
   - conda-forge
   - bioconda
   - defaults
+  - intel
 dependencies:
   - kma=1.4.9
+  - pyyaml

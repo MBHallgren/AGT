@@ -55,8 +55,7 @@ jobs:
 
       - name: build conda package
         run: |
-          conda env update --name osx-build --file envs/osx-build.yml
-          conda activate osx-build
+          conda install -c anaconda anaconda-client
           conda mambabuild conda -c conda-forge --output-folder .
 
       - name: upload conda package
@@ -90,8 +89,7 @@ jobs:
 
       - name: build conda package
         run: |
-          conda env update --name linux-build --file envs/linux-build.yml
-          conda activate linux-build
+          conda install -c anaconda anaconda-client
           conda mambabuild conda -c conda-forge --output-folder .
 
       - name: upload conda package

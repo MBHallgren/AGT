@@ -81,7 +81,7 @@ jobs:
       - name: Make conda yaml
         run: |
           pip install PyYAML
-          python conda/make_conda.py
+          python make_conda.py
 
       - uses: mamba-org/setup-micromamba@v1
         with:

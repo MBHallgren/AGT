@@ -27,26 +27,87 @@ jobs:
             - Second Change
           draft: false
           prerelease: false
-  conda:
-    runs-on: ubuntu-latest
-    #needs: docker
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v1
 
-      - name: Install dependencies
+  conda-osx:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ macos-latest ]
+
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+
+      - name: Make conda yaml
         run: |
           pip install PyYAML
           python conda/make_conda.py
 
-      - name: publish-to-conda
-        uses: paskino/conda-package-publish-action@master
+      - name: create environment with mamba
+        uses: conda-incubator/setup-miniconda@v2
         with:
-          subDir: 'conda'
-          channels: '-c conda-forge -c bioconda -c defaults'
-          AnacondaToken: ${{ secrets.GENOMICEPIDEMIOLOGY_CONDA_AUTH_TOKEN }}
-          publish: true
-          test_all: true
-          #convert_osx: true
+          mamba-version: "*"
+          channels: conda-forge,bioconda,defaults
+          auto-activate-base: true
+          activate-environment: osx-build
+          environment-file: envs/osx-build.yml
 
+      - name: check solution
+        run: |
+          mamba env export
 
+      - name: build conda package
+        run: |
+          conda mambabuild conda -c conda-forge --output-folder .
+
+      - name: upload conda package
+        run: |
+          anaconda -t ${{ secrets.GENOMICEPIDEMIOLOGY_CONDA_AUTH_TOKEN }} upload --label main osx-64/*.tar.bz2
+
+  conda-linux:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest ]
+
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+
+      - name: Make conda yaml
+        run: |
+          pip install PyYAML
+          python conda/make_conda.py
+
+      - name: create environment with mamba
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          mamba-version: "*"
+          channels: conda-forge,bioconda,defaults
+          auto-activate-base: true
+          activate-environment: linux-build
+          environment-file: envs/linux-build.yml
+
+      - name: check solution
+        run: |
+          mamba env export
+
+      - name: build conda package
+        run: |
+          conda mambabuild conda -c conda-forge --output-folder .
+
+      - name: upload conda package
+        run: |
+          anaconda -t ${{ secrets.GENOMICEPIDEMIOLOGY_CONDA_AUTH_TOKEN }} upload --label main linux-64/*.tar.bz2

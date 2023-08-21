@@ -4,7 +4,7 @@ import sys
 
 sys.path = [os.path.join(os.path.dirname(os.path.realpath(__file__)), '')] + sys.path
 
-from kmergenetyper import version
+import version
 
 data = {
     "package": {

@@ -40,8 +40,9 @@ def realign_consensus(output, prefix, database, keep, threads):
                 with open('{}/gene_{}.fsa'.format(output, header), 'a') as f:
                     print (line, file=f)
 
+    #Not working well enough
     for item in non_perfect_hits:
-        cmd = 'kma -i {}/gene_{}.fsa -o {}/{} -t_db {} -1t1 -proxi -0.95 -t {}'.format(output, item, output, item, database, threads)
+        cmd = 'kma -i {}/gene_{}.fsa -o {}/{} -t_db {} -1t1 -t {}'.format(output, item, output, item, database, threads)
         os.system(cmd)
 
     eval_realignments(output, prefix, headers, alignment_dict, non_perfect_hits, original_template_names)
